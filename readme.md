@@ -5,6 +5,9 @@ This project implements a distributed file system (DFS) based on gRPC and Protoc
 
 ## Key Features and Technical Highlights
 
+![gRPC Communication](untitled.png)
+
+
 - **Core DFS Operations**: Implementing fetch, store, list, get attributes, and delete operations using gRPC and Protocol Buffers.
 - **Client-side Caching**: Entire files are cached client-side to improve performance.
 - **Write Lock Mechanism**: Ensures only one client can write to a file at a time, managing concurrent modifications.
