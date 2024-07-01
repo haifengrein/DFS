@@ -5,7 +5,7 @@ This project implements a distributed file system (DFS) based on gRPC and Protoc
 
 ## Key Features and Technical Highlights
 
-![gRPC Communication](untitled.png)
+![gRPC](untitled.png)
 
 
 - **Core DFS Operations**: Implementing fetch, store, list, get attributes, and delete operations using gRPC and Protocol Buffers.
