@@ -141,6 +141,7 @@ public:
     //
     // You may add any additional declarations of methods or variables that you need here.
     //
+    std::mutex async_mutex;
 
 
 };
