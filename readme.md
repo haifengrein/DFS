@@ -1,98 +1,34 @@
- GRPC and Distributed Systems
 
-## Foreward
+# Distributed File System (DFS)
 
-In this project, you will design and implement a simple distributed file system (DFS).  First, you will develop several file transfer protocols using gRPC and Protocol Buffers. Next, you will incorporate a weakly consistent synchronization system to manage cache consistency between multiple clients and a single server. The system should be able to handle both binary and text-based files.
+This project implements a distributed file system (DFS) based on gRPC and Protocol Buffers. The system demonstrates comprehensive skills in distributed systems design, network programming, concurrency, and C++ development.
 
-Your source code will use a combination of C++14, gRPC, and Protocol Buffers to complete the implementation.
+## Key Features and Technical Highlights
 
-## Setup
+- **Core DFS Operations**: Implementing fetch, store, list, get attributes, and delete operations using gRPC and Protocol Buffers.
+- **Client-side Caching**: Entire files are cached client-side to improve performance.
+- **Write Lock Mechanism**: Ensures only one client can write to a file at a time, managing concurrent modifications.
+- **Asynchronous Notifications**: Utilizes gRPC async calls to propagate file updates efficiently.
+- **File Change Detection**: Uses CRC checksums and a "last write wins" strategy for conflict resolution.
+- **Multi-threaded Design**: Handles concurrent operations and file system events.
+- **Concurrency**: Multi-threaded programming using POSIX threads (pthread) API with synchronization via mutexes and condition variables.
+- **Error Handling**: Implements server timeouts and manages various error conditions gracefully.
 
-You can clone the code in the Project 4 repository with the command:
+## System Architecture
 
-```
-git clone https://github.gatech.edu/gios-fall-23/pr4.git
-```
-
-## Submission Instructions
-
-Submit all code via the Gradescope. For instructions on how to submit individual components of the assignment, see the instructions within [Part 1](docs/part1.md) and [Part 2](docs/part2.md).
+- **Client Component**: Manages user requests, local cache, and monitors local file changes.
+- **Server Component**: Responds to client requests, maintains file storage, manages file locks, broadcasts file changes.
+- **Asynchronous Notification System**: Allows the server to actively notify clients of file changes.
+- **Cache Consistency Protocol**: Ensures eventual consistency between client caches and server data.
 
 
-## Readme
+## Key Learnings
 
-Throughout the project, we encourage you to keep notes on what you have done, how you have approached each part of the project, and what resources you used in preparing your work. We have provided you with a prototype file, `readme-student.md` that you should use throughout the project.
+- Deep understanding of distributed systems design principles and trade-offs.
+- Practical application of the CAP theorem, balancing consistency, availability, and partition tolerance.
+- Mastery of modern RPC frameworks (gRPC) and serialization formats (Protocol Buffers).
+- Enhanced system programming skills in Linux environments.
+- Improved multi-threading and concurrent programming abilities.
+- Learning techniques for maintaining distributed cache consistency.
 
-Your project readme counts for 10% of your grade for Project 4 and should 
-be submitted on **Canvas** in PDF format. There is no limit to the number 
-of times you may submit your readme PDF.
-
-## Directions
-
-- Directions for Part 1 can be found in [docs/part1.md](docs/part1.md)
-- Directions for Part 2 can be found in [docs/part2.md](docs/part2.md)
-
-## Log Utility
-
-We've provided a simple logging utility, `dfs_log`, in this assignment that can be used within your project files.
-
-There are five log levels (LL_SYSINFO, LL_ERROR, LL_DEBUG, LL_DEBUG2, and LL_DEBUG3).
-
-During the tests, only log levels LL_SYSINFO, LL_ERROR, and LL_DEBUG will be output. The others will be ignored. You may use the other log levels for your own debugging and testing.
-
-The log utility uses a simple streaming syntax. To use it, make the function call with the log level desired, then stream your messages to it. For example:
-
-```
-dfs_log(LL_DEBUG) << "Type your message here: " << add_a_variable << ", add more info, etc."
-```
-
-## References
-
-### Relevant lecture material
-
-- [P4L1 Remote Procedure Calls](https://www.udacity.com/course/viewer#!/c-ud923/l-3450238825)
-
-### gRPC and Protocol Buffer resources
-
-- [gRPC C++ Reference](https://grpc.github.io/grpc/cpp/index.html)
-- [Protocol Buffers 3 Language Guide](https://developers.google.com/protocol-buffers/docs/proto3)
-- [gRPC C++ Examples](https://github.com/grpc/grpc/tree/master/examples/cpp)
-- [gRPC C++ Tutorial](https://grpc.io/docs/tutorials/basic/cpp/)
-- [Protobuffers Scalar types](https://developers.google.com/protocol-buffers/docs/proto3#scalar)
-- [gRPC Status Codes](https://github.com/grpc/grpc/blob/master/doc/statuscodes.md)
-- [gRPC Deadline](https://grpc.io/blog/deadlines/)
-
-## Rubric
-
-Your project will be graded at least on the following items:
-
-- Interface specification (.proto)
-- Service implementation
-- gRPC initiation and binding
-- Proper handling of deadline timeouts
-- Proper clean up of memory and gRPC resources
-- Proper communication with the server
-- Proper request and management of write locks
-- Proper synchronization of files between multiple clients and a single server
-- Insightful observations in the Readme file and suggestions for improving the class for future semesters
-
-#### gRPC Implementation (35 points)
-
-Full credit requires: code compiles successfully, does not crash, files fully transmitted, basic safety checks, and proper use of gRPC  - including the ability to get, store, and list files, along with the ability to recognize a timeout. Note that the automated tests will test some of these automatically, but graders may execute additional tests of these requirements.
-
-#### DFS Implementation (55 points)
-
-Full credit requires: code compiles successfully, does not crash, files fully transmitted, basic safety checks, proper use of gRPC, write locks properly handled, cache properly handled, synchronization of sync and inotify threads properly handled, and synchronization of multiple clients to a single server. Note that the automated tests will test some of these automatically, but graders may execute additional tests of these requirements.
-
-#### README (10 points + 5 point extra credit opportunity)
-
-* Clearly demonstrates your understanding of what you did and why - we want to see your design and your explanation of the choices that you made and why you made those choices. (4 points)
-* A description of the flow of control for your code; we strongly suggest that you use graphics here, but a thorough textual explanation is sufficient. (2 points)
-* A brief explanation of how you implemented and tested your code. (2 points)
-* References any external materials that you consulted during your development process (2 points)
-* Suggestions on how you would improve the documentation, sample code, testing, or other aspects of the project (up to 5 points extra credit available for noteworthy suggestions here, e.g., actual descriptions of how you would change things, sample code, code for tests, etc.) We do not give extra credit for simply reporting an issue - we're looking for actionable suggestions on how to improve things.
-
-### Questions
-
-For all questions, please use the class Piazza forum or the class Slack channel so that TA's and other students can assist you.
-
+This project showcases my ability to design and implement complex distributed systems, combining aspects of systems programming, network programming, and concurrent programming.
